@@ -4,7 +4,7 @@ Provides pgp encryption, decryption, and key generation functions.
 
 Installation with go module:
 
-go get github.com/digitalhurricane-io/gopgp
+go get github.com/digitalhurricane-io/gopgp@69c32327062a1469b197f288c34e852c76bf908f
 
 Add the following to your go.mod
 replace golang.org/x/crypto => github.com/ProtonMail/crypto v0.0.0-20191122234321-e77a1f03baa0
