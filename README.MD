@@ -1,6 +1,10 @@
 # Easy pgp encryption with go
 
-Light wrapper around proton mail's crypto library https://github.com/ProtonMail/gopenpgp
+Easily encrypt and decrypt data
+
+Easily generate pgp keys
+
+Light wrapper around proton mail's pgp library https://github.com/ProtonMail/gopenpgp
 
 ### Installation:
 
