@@ -1,4 +1,4 @@
-## Provides pgp encryption, decryption, and key generation functions.
+# Easy pgp encryption with go
 
 Light wrapper around proton mail's crypto library https://github.com/ProtonMail/gopenpgp
 
