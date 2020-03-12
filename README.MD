@@ -1,8 +1,8 @@
-##Provides pgp encryption, decryption, and key generation functions.
+## Provides pgp encryption, decryption, and key generation functions.
 
 Light wrapper around proton mail's crypto library https://github.com/ProtonMail/gopenpgp
 
-###Installation:
+### Installation:
 
 ```go get github.com/digitalhurricane-io/gopgp```
 
@@ -12,7 +12,7 @@ Add the following to your go.mod
 
 
 
-###Exports the following functions:
+### Exports the following functions:
 
 Encrypt message with partner public key. Sign with own private key.
 
@@ -22,39 +22,45 @@ func Encrypt(data []byte, publicKey string, signingPrivateKey string) ([]byte, e
 
 Decrypt message with own private key. Verify with partner public key.
 
-```func Decrypt(data []byte, privateKey string, verifyPublicKey string) ([]byte, error)```
+```go
+func Decrypt(data []byte, privateKey string, verifyPublicKey string) ([]byte, error)
+```
 
 Generates public and private pgp keys in standard string format (armored)
 
-```func GenerateKeys(name, email string) (publicKey, privateKey string, err error)```
+```go
+func GenerateKeys(name, email string) (publicKey, privateKey string, err error)
+```
 
 See the test file for examples.
 
-###Full Example from [pgp_test.go](pgp_test.go)
-```	message := "My Test Message"
-   
-   	partnerPublicKey, partnerPrivateKey, err := GenerateKeys("Alice", "alice@example.com")
-   	if err != nil {
-   		t.Error(err)
-   	}
-   
-   	myPublicKey, myPrivateKey , err := GenerateKeys("Bob", "bob@example.com")
-   	if err != nil {
-   		t.Error(err)
-   	}
-   
-   	// encrypting message with partners public key to send him message. signing with my private key.
-   	encrypted, err := Encrypt([]byte(message), partnerPublicKey, myPrivateKey)
-   	if err != nil {
-   		t.Error(err)
-   	}
-   
-   	// partner is decrypting the message with his private key and verifying the signature with my public key
-   	decrypted, err := Decrypt(encrypted, partnerPrivateKey, myPublicKey)
-   	if err != nil {
-   		t.Error(err)
-   	}
-   
-   	if string(decrypted) != message {
-   		t.Error(fmt.Errorf("Original message and decrypted message did not match"))
-   	}```
+### Full Example from [pgp_test.go](pgp_test.go)
+```go	
+message := "My Test Message"
+
+partnerPublicKey, partnerPrivateKey, err := GenerateKeys("Alice", "alice@example.com")
+if err != nil {
+    t.Error(err)
+}
+
+myPublicKey, myPrivateKey , err := GenerateKeys("Bob", "bob@example.com")
+if err != nil {
+    t.Error(err)
+}
+
+// encrypting message with partners public key to send him message. signing with my private key.
+encrypted, err := Encrypt([]byte(message), partnerPublicKey, myPrivateKey)
+if err != nil {
+    t.Error(err)
+}
+
+// partner is decrypting the message with his private key and verifying the signature with my public key
+decrypted, err := Decrypt(encrypted, partnerPrivateKey, myPublicKey)
+if err != nil {
+    t.Error(err)
+}
+
+if string(decrypted) != message {
+    t.Error(fmt.Errorf("Original message and decrypted message did not match"))
+}
+```
