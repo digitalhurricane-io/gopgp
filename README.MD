@@ -16,7 +16,9 @@ Add the following to your go.mod
 
 Encrypt message with partner public key. Sign with own private key.
 
-```func Encrypt(data []byte, publicKey string, signingPrivateKey string) ([]byte, error)```
+```go
+func Encrypt(data []byte, publicKey string, signingPrivateKey string) ([]byte, error)
+```
 
 Decrypt message with own private key. Verify with partner public key.
 
