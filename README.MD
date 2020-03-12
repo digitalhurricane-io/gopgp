@@ -32,7 +32,6 @@ Generates public and private pgp keys in standard string format (armored)
 func GenerateKeys(name, email string) (publicKey, privateKey string, err error)
 ```
 
-See the test file for examples.
 
 ### Full Example from [pgp_test.go](pgp_test.go)
 ```go	
